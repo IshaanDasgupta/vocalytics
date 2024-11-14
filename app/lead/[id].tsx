@@ -255,6 +255,7 @@ const commonStyles = StyleSheet.create({
         borderRadius: 10,
         borderColor: "#C1C1C1",
         padding: 8,
+        height: 72,
     },
     input: { textAlignVertical: "top" },
     highlightPressable: {
@@ -469,7 +470,6 @@ const ConversationSummary = (props: conversationSummaryProps) => {
 
             <ThemedScrollView
                 horizontal
-                style={conversationSummaryStyles.conversationTagFlex}
                 contentContainerStyle={
                     conversationSummaryStyles.conversationTagFlexContainer
                 }
@@ -535,9 +535,6 @@ const conversationSummaryStyles = StyleSheet.create({
         borderRadius: 10,
         flexDirection: "column",
         gap: 10,
-    },
-    conversationTagFlex: {
-        flex: 1,
     },
     conversationTagFlexContainer: {
         flexDirection: "row",

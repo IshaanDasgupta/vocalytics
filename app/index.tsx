@@ -1,5 +1,6 @@
 import { ThemedPressable } from "@/components/themedComponents/ThemedPressable";
 import { ThemedSafeAreaView } from "@/components/themedComponents/ThemedSafeAreaView";
+import { ThemedScrollView } from "@/components/themedComponents/ThemedScrollView";
 import { ThemedText } from "@/components/themedComponents/ThemedText";
 import { ThemedView } from "@/components/themedComponents/ThemedView";
 import { router } from "expo-router";
@@ -17,26 +18,26 @@ export default function Banner() {
             lightColor="#2B3951"
             darkColor="#2B3951"
         >
-            <ThemedView style={styles.container}>
-                <Svg
-                    height="100%"
-                    width="100%"
-                    viewBox="0 0 100 100"
-                    style={styles.headerSvg}
-                >
-                    <Path
-                        d="M0 0 L0 40 L40 20 Q50 15 60 23 L100 60 L100 0 Z"
-                        stroke="#2B3951"
-                        fill="#2B3951"
-                    />
-                </Svg>
-                <ScrollView
-                    contentContainerStyle={{
-                        flexGrow: 1,
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
+            <ThemedScrollView
+                contentContainerStyle={{
+                    flexGrow: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                <ThemedView style={styles.container}>
+                    <Svg
+                        height="100%"
+                        width="100%"
+                        viewBox="0 0 100 100"
+                        style={styles.headerSvg}
+                    >
+                        <Path
+                            d="M0 0 L0 40 L40 20 Q50 15 60 23 L100 60 L100 0 Z"
+                            stroke="#2B3951"
+                            fill="#2B3951"
+                        />
+                    </Svg>
                     <ThemedView style={styles.bannerContainer}>
                         <ThemedView style={styles.logoContainer}>
                             <Image
@@ -45,7 +46,10 @@ export default function Banner() {
                             />
                             <ThemedText
                                 textType="title"
-                                style={styles.logoText}
+                                style={{
+                                    ...styles.logoText,
+                                    ...styles.textAlginCenter,
+                                }}
                             >
                                 Vocalytics AI
                             </ThemedText>
@@ -55,7 +59,10 @@ export default function Banner() {
                             style={styles.bannerGraphic}
                             source={require("@/assets/images/banner/bannerGraphic-1x.png")}
                         />
-                        <ThemedText textType="title">
+                        <ThemedText
+                            textType="title"
+                            style={styles.textAlginCenter}
+                        >
                             Discover the power of conversational insights
                         </ThemedText>
                         <ThemedPressable
@@ -68,8 +75,8 @@ export default function Banner() {
                             </ThemedText>
                         </ThemedPressable>
                     </ThemedView>
-                </ScrollView>
-            </ThemedView>
+                </ThemedView>
+            </ThemedScrollView>
         </ThemedSafeAreaView>
     );
 }
@@ -81,20 +88,23 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        width: "100%",
         position: "relative",
+        alignItems: "center",
+        justifyContent: "center",
     },
     bannerContainer: {
         width: "75%",
         alignItems: "center",
-        backgroundColor: "rgba(0, 0, 0, 0)",
         gap: 32,
+        marginTop: "20%",
+        marginBottom: 32,
     },
     headerSvg: {
         position: "absolute",
-        top: "-27%",
+        top: "-32%",
         left: 0,
-        right: 0,
-        bottom: 0,
+        zIndex: 2,
     },
     logoContainer: {
         flexDirection: "column",
@@ -110,6 +120,9 @@ const styles = StyleSheet.create({
     logoText: {
         fontSize: 32,
         lineHeight: 38,
+    },
+    textAlginCenter: {
+        textAlign: "center",
     },
     bannerGraphic: {
         width: 250,
